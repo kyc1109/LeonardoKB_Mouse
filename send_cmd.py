@@ -60,7 +60,7 @@ class com:
 
     def pi_com(self):
         while True:
-            cmd = input("\nCmd input:") #ethan_kuo@compal.com
+            cmd = input("\nCmd input:")
             if self.special_key(cmd):
                 pass
             else:
@@ -75,7 +75,7 @@ class com:
         #self.ser.close()        
     
     def kbWrite(self,str_send): #v1
-        #cmd = input("\nCmd input:") #ethan_kuo@compal.com
+        #cmd = input("\nCmd input:")
         if self.special_key(str_send): #is special key
             pass
         else:
@@ -103,8 +103,6 @@ class com:
         print("\nInput("+str(len(str_send))+"):", str_send) #show input
         if len(com_read) >0:
             logtxt = str("echo "+str(datetime.datetime.now())+", "+com_read.replace("\r\n","")+" >>"+self.logfile)
-            #print(logtxt)
-            #os.system(logtxt) #ValueError: embedded null byte
         self.delay_check(str_send) #wait USB output
         self.ser.flush()
         
@@ -127,38 +125,21 @@ class com:
         self.ser.write(b"\xF1\x83\x00\x00") # win 
         time.sleep(1)
         self.ser.write(b"\xF1\x83\x00\x00") #win
-
-        #print(self.ser.readline()) #remove b"" by utf-8, remove newline by restrip()         
-        #print(self.ser.readline())
+           
     def test_cmd(self): #OK
         self.ser.write(b"\xF3\x80\x00\x00") #F3 press  
-        #self.run_kb("KEY_LEFT_CTRL") #  
-        #time.sleep(0.1)
         self.ser.write(b"\xF3\x82\x00\x00") #F3 press
-        #self.run_kb("KEY_LEFT_ALT") #      
-        #time.sleep(0.1)      
         self.ser.write(b"\xF3\xD4\x00\x00") #F3 press
-        #time.sleep(0.1)             
         self.ser.write(b"\xF4\xD4\x00\x00") #F4 release
-        #self.run_kb("KEY_DELETE") #    
-        #print(self.ser.readline())
-        #print(self.ser.readline())
-        #print(self.ser.readline())
+
     def test_power(self): #OK
         self.ser.write(b"\xF2\x0A\x00\x00") #delay 9s. 0x0A=10s
 
     def test_mos(self): #OK. sign int. >0x80 is -x,-y, <0x80 is x,y 
-        #for i in range(10):
         self.ser.write(b"\xF5\x70\x70\x00") # move
         self.ser.write(b"\xF6\x00\x80\x00") # MOUSE_LEFT 
         self.ser.write(b"\xF6\x01\x80\x00") # MOUSE_RIGHT
-        #self.run_kb(50)
-        #self.run_kb(50)
-        #time.sleep(1)
-        #self.ser.write(50)
-        #time.sleep(1)
-        #self.ser.write(50)
-    
+        
     def test_sel_item(self):
         print(self.ser.readline()) #remove b"" by utf-8, remove newline by restrip()         
         sel = input("\nCmd input: s,c,p,m: ")or "1"
