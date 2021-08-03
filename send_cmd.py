@@ -9,11 +9,55 @@ import time
 #Pi Pin 8,10,14, Arduino Leonardo 0,1 5V, GND
 class com:
     q=queue.Queue()
+    #copy from https://www.arduino.cc/reference/en/language/functions/usb/keyboard/keyboardmodifiers/
     s_key={"KEY_LEFT_CTRL":b"\x80",
+        "KEY_LEFT_SHIFT":b"\x81",
         "KEY_LEFT_ALT":b"\x82",
         "KEY_LEFT_GUI":b"\x83", #Win key
+        "KEY_RIGHT_CTRL":b"\x84",
+        "KEY_RIGHT_SHIFT":b"\x85",
+        "KEY_RIGHT_ALT":b"\x86",
+        "KEY_RIGHT_GUI":b"\x87",
+        "KEY_UP_ARROW":b"\xDA",
+        "KEY_DOWN_ARROW":b"\xD9",
+        "KEY_LEFT_ARROW":b"\xD8",
+        "KEY_RIGHT_ARROW":b"\xD7",
+        "KEY_BACKSPACE":b"\xB2",
+        "KEY_TAB":b"\xB3",
         "KEY_RETURN":b"\xB0", #Enter key
         "KEY_ESC":b"\xB1",
+        "KEY_INSERT":b"\xD1",
+        "KEY_DELETE":b"\xD4",
+        "KEY_PAGE_UP":b"\xD3",
+        "KEY_PAGE_DOWN":b"\xD6",
+        "KEY_HOME":b"\xD2",
+        "KEY_END":b"\xD5",
+        "KEY_CAPS_LOCK":b"\xC1",
+        "KEY_F1":b"\xC2",
+        "KEY_F2":b"\xC3",
+        "KEY_F3":b"\xC4",
+        "KEY_F4":b"\xC5",
+        "KEY_F5":b"\xC6",
+        "KEY_F6":b"\xC7",
+        "KEY_F7":b"\xC8",
+        "KEY_F8":b"\xC9",
+        "KEY_F9":b"\xCA",
+        "KEY_F10":b"\xCB",
+        "KEY_F11":b"\xCC",
+        "KEY_F12":b"\xCD",
+        "KEY_F13":b"\xF0",
+        "KEY_F14":b"\xF1",
+        "KEY_F15":b"\xF2",
+        "KEY_F16":b"\xF3",
+        "KEY_F17":b"\xF4",
+        "KEY_F18":b"\xF5",
+        "KEY_F19":b"\xF6",
+        "KEY_F20":b"\xF7",
+        "KEY_F21":b"\xF8",
+        "KEY_F22":b"\xF9",
+        "KEY_F23":b"\xFA",
+        "KEY_F24":b"\xFB",
+        "KEY_CAD":b"\xE0"} #Dec 224
     def __init__(self):
         # Initail
         self.logfile="ttyS0.txt" #for debug=
